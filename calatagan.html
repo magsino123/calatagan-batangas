@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipality of Calatagan | Official Municipal Web Portal</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6.4 Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts (Inter + Montserrat) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --muni-navy: #0F2C59;
+            --muni-blue-accent: #1E56A0;
+            --muni-gold: #F1C40F;
+            --muni-gold-hover: #D4AC0D;
+            --muni-emerald: #10B981;
+            --muni-sand: #FDFBF7;
+            --muni-slate: #334155;
+            --muni-coral: #E74C3C;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--muni-sand);
+            color: var(--muni-slate);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6, .brand-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .top-emergency-bar {
+            background-color: #081B38;
+            color: #E2E8F0;
+            font-size: clamp(0.75rem, 1.5vw, 0.82rem);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .navbar-calatagan {
+            background: #FFFFFF;
+            box-shadow: 0 4px 20px rgba(15, 44, 89, 0.08);
+            padding: 0.6rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .seal-logo {
+            width: clamp(42px, 5vw, 52px);
+            height: clamp(42px, 5vw, 52px);
+            background: white;
+            border: 2px solid var(--muni-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muni-gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .brand-text {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            color: var(--muni-navy);
+            letter-spacing: -0.3px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--muni-navy) !important;
+            font-size: 0.92rem;
+            padding: 0.5rem 0.9rem !important;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--muni-blue-accent) !important;
+            border-bottom: 2px solid var(--muni-gold);
+        }
+
+        .hero-banner {
+            background: linear-gradient(180deg, rgba(15, 44, 89, 0.78) 0%, rgba(15, 44, 89, 0.90) 100%), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: white;
+            padding: clamp(60px, 10vw, 100px) 0 clamp(50px, 8vw, 90px) 0;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.25;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-tagline {
+            color: var(--muni-gold);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Fixed Search Box Styling */
+        .quick-search-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 6px 8px 6px 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            max-width: 680px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-search-box input.form-control {
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            color: #0F2C59;
+            font-weight: 500;
+            font-size: 0.95rem;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .quick-search-box input.form-control::placeholder {
+            color: #64748B;
+        }
+
+        .card-muni {
+            border: none;
+            border-radius: 16px;
+            background: #FFFFFF;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-muni:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(15, 44, 89, 0.12);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+            border-left: 4px solid var(--muni-gold);
+            border-radius: 12px;
+            padding: 1rem;
+            height: 100%;
+        }
+
+        .btn-muni-gold {
+            background-color: var(--muni-gold);
+            color: #0F2C59;
+            font-weight: 700;
+            border-radius: 30px;
+            padding: 0.6rem 1.4rem;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-muni-gold:hover {
+            background-color: var(--muni-gold-hover);
+            color: #000;
+            transform: scale(1.02);
+        }
+
+        .btn-muni-navy {
+            background-color: var(--muni-navy);
+            color: #FFFFFF;
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 0.65rem 1.6rem;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-muni-navy:hover {
+            background-color: var(--muni-blue-accent);
+            color: #FFF;
+        }
+
+        .tourist-card img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            width: 100%;
+        }
+
+        .calculator-box {
+            background: #0F2C59;
+            color: white;
+            border-radius: 20px;
+            padding: clamp(1.25rem, 3vw, 2rem);
+            box-shadow: 0 10px 30px rgba(15, 44, 89, 0.2);
+        }
+
+        @media (max-width: 576px) {
+            .quick-search-box {
+                flex-direction: column;
+                border-radius: 20px;
+                padding: 10px;
+            }
+            .quick-search-box button {
+                width: 100%;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--muni-blue-accent);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-emergency-bar">
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 text-center text-sm-start">
+            <div class="d-flex flex-wrap align-items-center justify-content-center gap-2">
+                <span><i class="fa-solid fa-cloud-sun text-warning me-1"></i> <span id="weather-text">30°C Sunny | Calatagan Coastal</span></span>
+                <span class="d-none d-md-inline text-white-50">|</span>
+                <span class="d-none d-md-inline"><i class="fa-solid fa-clock me-1 text-info"></i> PST: <span id="clock-ph">--:--:--</span></span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <a href="tel:0433312345" class="text-white text-decoration-none fw-bold small"><i class="fa-solid fa-phone-flip text-danger me-1"></i> MDRRMO: (043) 331-2345</a>
+                <span class="text-white-50">|</span>
+                <button class="btn btn-sm btn-outline-light py-0 px-2 rounded-pill" onclick="toggleLanguage()" id="lang-btn">EN / Tagalog</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-calatagan sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2 gap-sm-3" href="#">
+                <div class="seal-logo">
+                    <img src="calatagan_logo.png" alt="Calatagan Seal" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://placehold.co/100x100/0F2C59/F1C40F?text=LGU'">
+                </div>
+                <div>
+                    <span class="d-block text-uppercase fw-bold brand-text lh-1">Municipality of Calatagan</span>
+                    <small class="text-muted fw-semibold d-block mt-1" style="font-size: 0.68rem; letter-spacing: 0.5px;">PROVINCE OF BATANGAS • EST. 1912</small>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#muniNavbar">
+                <i class="fa-solid fa-bars fs-3 text-navy"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="muniNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
+                    <li class="nav-item"><a class="nav-link active" href="#home" data-i18n="nav_home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mayor-corner" data-i18n="nav_about">Mayor's Corner</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#eservices" data-i18n="nav_eservices">Online E-Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tourism" data-i18n="nav_tourism">Discover Calatagan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#directory" data-i18n="nav_directory">Departments</a></li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                        <button class="btn btn-muni-gold btn-sm px-3 w-100 w-lg-auto shadow-sm" onclick="openEmergencyModal()">
+                            <i class="fa-solid fa-triangle-exclamation me-1"></i> Emergency Desk
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-banner text-center px-3">
+        <div class="container position-relative z-1">
+            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold text-uppercase mb-3 shadow-sm d-inline-block text-wrap">
+                <i class="fa-solid fa-umbrella-beach me-1"></i> Beach Capital & Heritage Gem of Batangas
+            </span>
+            <h1 class="hero-title mb-2" data-i18n="hero_title">Welcome to Calatagan</h1>
+            <p class="hero-tagline mb-4" data-i18n="hero_motto">"Strong Governance, Prosperous Calatagan"</p>
+
+            <!-- Corrected Quick Search Box -->
+            <div class="quick-search-box mb-4">
+                <i class="fa-solid fa-magnifying-glass text-muted fs-5 ms-1"></i>
+                <input type="text" id="muniSearchInput" class="form-control" placeholder="Search for Business Permits, Real Property Tax, Tourism Clearance..." onkeyup="liveSearchServices()">
+                <button class="btn btn-muni-navy px-4 rounded-pill" onclick="triggerSearch()"><span data-i18n="btn_search">Search</span></button>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-center gap-2 gap-sm-3">
+                <a href="#eservices" class="btn btn-muni-gold shadow-sm"><i class="fa-solid fa-laptop-code me-2"></i><span data-i18n="cta_eservices">Pay & Apply Online</span></a>
+                <a href="#tourism" class="btn btn-outline-light rounded-pill px-4 fw-semibold"><i class="fa-solid fa-compass me-2"></i><span data-i18n="cta_tourism">Explore Resorts & Landmarks</span></a>
+                <a href="#calculator" class="btn btn-emerald rounded-pill px-4 fw-semibold text-white" style="background-color: var(--muni-emerald);"><i class="fa-solid fa-calculator me-2"></i>Tourism Pass Fee Calculator</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="mayor-corner" class="py-4 py-md-5">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5 text-center">
+                    <div class="position-relative d-inline-block max-w-100">
+                        <img src="https://placehold.co/450x520/0F2C59/F1C40F?text=MAYOR+RICO+B.+PUNO" alt="Mayor Rico B. Puno" class="img-fluid rounded-4 shadow-lg border border-4 border-white">
+                        <div class="position-absolute bottom-0 end-0 bg-warning text-dark p-2 p-sm-3 rounded-3 shadow fw-bold text-start m-2 m-sm-3" style="max-width: 200px;">
+                            <i class="fa-solid fa-award me-1"></i> <span data-i18n="mayor_title">Municipal Mayor</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <span class="text-uppercase fw-bold text-warning-emphasis d-block mb-1" style="letter-spacing: 1px;" data-i18n="mayor_subtitle">Message from the Municipal Mayor</span>
+                    <h2 class="fw-bold text-navy mb-3">Hon. Mayor Rico B. Puno</h2>
+                    <p class="lead text-secondary fs-6" data-i18n="mayor_quote">
+                        "A warm and joyful welcome to the official web portal of the Municipality of Calatagan! Our local government continuously strives to deliver fast, honest, and transparent public service for every Calataguenio and our valued guests."
+                    </p>
+                    <p class="text-muted" data-i18n="mayor_desc">
+                        Through our modernized E-Services portal, we connect our 25 barangays and global tourists to seamless municipal applications, eco-tourism registration, real property taxation, and disaster preparedness updates.
+                    </p>
+
+                    <div class="row g-2 g-sm-3 mt-3">
+                        <div class="col-6 col-sm-6 col-lg-3">
+                            <div class="stat-card">
+                                <span class="d-block text-muted small" data-i18n="stat_land">Land Area</span>
+                                <strong class="fs-6 fs-sm-5 text-navy">112.70 km²</strong>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-lg-3">
+                            <div class="stat-card">
+                                <span class="d-block text-muted small" data-i18n="stat_brgy">Barangays</span>
+                                <strong class="fs-6 fs-sm-5 text-navy">25 Barangays</strong>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-lg-3">
+                            <div class="stat-card">
+                                <span class="d-block text-muted small" data-i18n="stat_coast">Coastline</span>
+                                <strong class="fs-6 fs-sm-5 text-navy">56 km Coast</strong>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-lg-3">
+                            <div class="stat-card">
+                                <span class="d-block text-muted small" data-i18n="stat_sector">Main Economy</span>
+                                <strong class="fs-6 text-navy">Tourism & Fishing</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eservices" class="py-4 py-md-5 bg-light">
+        <div class="container">
+            <div class="text-center max-w-700 mx-auto mb-4 mb-md-5">
+                <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill">E-GOVERNANCE PORTAL</span>
+                <h2 class="fw-bold text-navy mt-2" data-i18n="eservices_head">Online Government E-Services</h2>
+                <p class="text-muted small fs-sm-6" data-i18n="eservices_sub">Apply, pay, and obtain official municipal documents convenience-first without waiting in physical queues.</p>
+            </div>
+
+            <div class="row g-3 g-md-4" id="servicesGrid">
+                <!-- BPLS Card -->
+                <div class="col-sm-6 col-lg-4 service-card-item" data-title="business permit bpls tax permit renewal">
+                    <div class="card card-muni p-3 p-md-4">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="p-3 bg-primary-subtle rounded-3 text-primary fs-3 flex-shrink-0">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold m-0 text-navy fs-6 fs-md-5">Business Permit (BPLS)</h5>
+                                <small class="text-muted">New Application & Renewal</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-3">Online assessment, gross sales declaration, and electronic Mayor's Permit processing.</p>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill mt-auto w-100" onclick="openServiceModal('Business Permit (BPLS) Application', 1500)"><span data-i18n="btn_start">Start Application</span> <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- Real Property Tax -->
+                <div class="col-sm-6 col-lg-4 service-card-item" data-title="real property tax rpt land tax clearance">
+                    <div class="card card-muni p-3 p-md-4">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="p-3 bg-warning-subtle rounded-3 text-warning-emphasis fs-3 flex-shrink-0">
+                                <i class="fa-solid fa-house-chimney-window"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold m-0 text-navy fs-6 fs-md-5">Real Property Tax (RPT)</h5>
+                                <small class="text-muted">Land Tax & Assessor Query</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-3">Inquire property tax declarations, tax balance, and generate official RPT clearance certificates.</p>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill mt-auto w-100" onclick="openServiceModal('Real Property Tax Inquiries', 500)"><span data-i18n="btn_verify">Verify Property</span> <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- Civil Registry -->
+                <div class="col-sm-6 col-lg-4 service-card-item" data-title="civil registry birth certificate marriage death">
+                    <div class="card card-muni p-3 p-md-4">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="p-3 bg-success-subtle rounded-3 text-success fs-3 flex-shrink-0">
+                                <i class="fa-solid fa-file-invoice"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold m-0 text-navy fs-6 fs-md-5">Civil Registry Documents</h5>
+                                <small class="text-muted">Birth, Marriage, Death Certs</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-3">Request true certified copies of vital registry certificates issued by Calatagan Civil Registrar.</p>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill mt-auto w-100" onclick="openServiceModal('Civil Registry Request', 180)"><span data-i18n="btn_request">Request Record</span> <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- Tourism Fee Pass -->
+                <div class="col-sm-6 col-lg-4 service-card-item" data-title="tourism environmental fee eco pass resort clearance beach">
+                    <div class="card card-muni p-3 p-md-4 border-2 border-warning">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="p-3 bg-warning text-dark rounded-3 fs-3 flex-shrink-0">
+                                <i class="fa-solid fa-ticket"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold m-0 text-navy fs-6 fs-md-5">Tourism Ecological Pass</h5>
+                                <small class="text-dark fw-semibold">Mandatory Visitor Fee</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-3">Pre-pay the Calatagan Environmental & Conservation fee before heading to resorts or sandbars.</p>
+                        <button class="btn btn-muni-gold btn-sm rounded-pill mt-auto w-100" onclick="openServiceModal('Calatagan Tourism Environmental Pass', 50)"><span data-i18n="btn_pass">Get Tourist Pass</span> <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- Municipal Clearance -->
+                <div class="col-sm-6 col-lg-4 service-card-item" data-title="clearance indigency mayor police certificate">
+                    <div class="card card-muni p-3 p-md-4">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="p-3 bg-info-subtle rounded-3 text-info-emphasis fs-3 flex-shrink-0">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold m-0 text-navy fs-6 fs-md-5">Municipal Clearances</h5>
+                                <small class="text-muted">Mayor's & Indigency Certs</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-3">Online application for local employment clearance, scholarship certification, and indigency forms.</p>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill mt-auto w-100" onclick="openServiceModal('Municipal Clearance Request', 100)"><span data-i18n="btn_clearance">Apply Clearance</span> <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- MDRRMO & Safety Permits -->
+                <div class="col-sm-6 col-lg-4 service-card-item" data-title="mdrrmo disaster safety inspection clearance building">
+                    <div class="card card-muni p-3 p-md-4">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="p-3 bg-danger-subtle rounded-3 text-danger fs-3 flex-shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold m-0 text-navy fs-6 fs-md-5">Disaster Safety Permit</h5>
+                                <small class="text-muted">MDRRMO Compliance</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-3">Safety clearances for coastal structures, commercial establishments, and event permits.</p>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill mt-auto w-100" onclick="openServiceModal('Disaster Safety Inspection Permit', 300)"><span data-i18n="btn_safety">File Compliance</span> <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tourism" class="py-4 py-md-5">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-2">
+                <div>
+                    <span class="text-uppercase fw-bold text-warning-emphasis d-block" style="letter-spacing: 1px;" data-i18n="tour_subtitle">Heritage & Attractions</span>
+                    <h2 class="fw-bold text-navy m-0" data-i18n="tour_head">Discover Calatagan</h2>
+                </div>
+                <div class="btn-group flex-wrap mt-2 mt-md-0" role="group">
+                    <button type="button" class="btn btn-outline-dark btn-sm active" onclick="filterTourism('all', event)" data-i18n="filter_all">All Places</button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" onclick="filterTourism('heritage', event)" data-i18n="filter_heritage">Heritage</button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" onclick="filterTourism('beach', event)" data-i18n="filter_beach">Beaches & Reefs</button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" onclick="filterTourism('eco', event)" data-i18n="filter_eco">Eco-Parks</button>
+                </div>
+            </div>
+
+            <div class="row g-3 g-md-4" id="tourismGrid">
+                <!-- Cape Santiago -->
+                <div class="col-sm-6 col-lg-3 tourist-item" data-category="heritage">
+                    <div class="card card-muni tourist-card overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Cape Santiago Lighthouse">
+                        <div class="p-3">
+                            <span class="badge bg-warning text-dark mb-1">Historic (1890)</span>
+                            <h5 class="fw-bold text-navy m-0 fs-6">Cape Santiago Lighthouse</h5>
+                            <small class="text-muted d-block mb-2">Faro de Cabo de Santiago</small>
+                            <p class="text-muted small m-0">One of the oldest functioning lighthouses in the Philippines, commanding views of the Verde Island Passage.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ang Pulo Mangrove Park -->
+                <div class="col-sm-6 col-lg-3 tourist-item" data-category="eco">
+                    <div class="card card-muni tourist-card overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Ang Pulo Mangrove Forest">
+                        <div class="p-3">
+                            <span class="badge bg-success text-white mb-1">Eco Sanctuary</span>
+                            <h5 class="fw-bold text-navy m-0 fs-6">Ang Pulo Mangrove Forest</h5>
+                            <small class="text-muted d-block mb-2">Brgy. Quilitisan Conservation</small>
+                            <p class="text-muted small m-0">A rich marine biodiversity sanctuary featuring boardwalk trails through dense mangrove systems.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- White Sand Beaches -->
+                <div class="col-sm-6 col-lg-3 tourist-item" data-category="beach">
+                    <div class="card card-muni tourist-card overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80" alt="Playa Calatagan & Stilts">
+                        <div class="p-3">
+                            <span class="badge bg-info text-white mb-1">Famous White Sand</span>
+                            <h5 class="fw-bold text-navy m-0 fs-6">Playa & Stilts Resorts</h5>
+                            <small class="text-muted d-block mb-2">Brgy. Sta. Ana / Sta. Maria</small>
+                            <p class="text-muted small m-0">World-class coastal resorts featuring floating cottages, sunset beaches, and clear shallow waters.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Little Boracay & Sandbar -->
+                <div class="col-sm-6 col-lg-3 tourist-item" data-category="beach">
+                    <div class="card card-muni tourist-card overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=600&q=80" alt="Little Boracay Sandbar">
+                        <div class="p-3">
+                            <span class="badge bg-primary text-white mb-1">Coral Reef & Sandbar</span>
+                            <h5 class="fw-bold text-navy m-0 fs-6">Little Boracay Sandbar</h5>
+                            <small class="text-muted d-block mb-2">Calatagan Coral Reef Waters</small>
+                            <p class="text-muted small m-0">Pristine white sandbar appearing during low tide, ideal for snorkeling and starfish spotting.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eco Fee Estimator Calculator -->
+            <div id="calculator" class="mt-4 mt-md-5">
+                <div class="calculator-box">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-6">
+                            <h4 class="fw-bold text-warning mb-2"><i class="fa-solid fa-calculator me-2"></i>Calatagan Tourist Pass Estimator</h4>
+                            <p class="text-white-50 small mb-3" data-i18n="calc_desc">Under Municipal Ordinance No. 2021-102, all resort guests and tourists visiting Calatagan beaches are required to pay an Ecological & Environmental Conservation fee (₱50.00 / headcount).</p>
+                            <ul class="list-unstyled text-white-50 small mb-0">
+                                <li class="mb-1"><i class="fa-solid fa-circle-check text-warning me-2"></i>Senior Citizens & PWDs receive a 20% discount.</li>
+                                <li class="mb-1"><i class="fa-solid fa-circle-check text-warning me-2"></i>Children under 6 years old are FREE.</li>
+                                <li><i class="fa-solid fa-circle-check text-warning me-2"></i>Supports marine sanctuary patrols and beach cleanups.</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 bg-white text-dark p-3 p-md-4 rounded-4 shadow">
+                            <h5 class="fw-bold text-navy mb-3" data-i18n="calc_title">Calculate Group Entrance Pass</h5>
+                            <div class="row g-2 g-sm-3">
+                                <div class="col-6">
+                                    <label class="form-label small fw-semibold" data-i18n="calc_adults">Regular Adults (₱50)</label>
+                                    <input type="number" id="calcAdults" class="form-control" value="2" min="0" onchange="computeEcoFee()">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label small fw-semibold" data-i18n="calc_seniors">Seniors / PWDs (₱40)</label>
+                                    <input type="number" id="calcSeniors" class="form-control" value="0" min="0" onchange="computeEcoFee()">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-semibold" data-i18n="calc_dest">Target Beach / Resort Area</label>
+                                    <select class="form-select" id="calcResort">
+                                        <option value="Playa / Stilts Area">Playa / Stilts Area (Brgy. Sta. Ana)</option>
+                                        <option value="Manuel Uy / Aquaria">Manuel Uy / Aquaria Beach</option>
+                                        <option value="Little Boracay Sandbar Boat Tour">Little Boracay Sandbar Boat Tour</option>
+                                        <option value="Ang Pulo Mangrove Park">Ang Pulo Mangrove Park</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr class="my-3">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2">
+                                <div>
+                                    <small class="text-muted d-block" data-i18n="calc_total">Total Eco Fee:</small>
+                                    <h3 class="fw-bold text-success m-0" id="totalFeeDisplay">₱100.00</h3>
+                                </div>
+                                <button class="btn btn-muni-gold px-4 shadow w-100 w-sm-auto" onclick="openServiceModal('Pre-Paid Tourist Environmental Pass', parseInt(document.getElementById('totalFeeDisplay').innerText.replace(/[^0-9]/g,'')))">
+                                    <i class="fa-solid fa-qrcode me-1"></i> <span data-i18n="btn_prepay">Pre-pay Eco Pass</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="directory" class="py-4 py-md-5 bg-light">
+        <div class="container">
+            <div class="text-center max-w-700 mx-auto mb-4 mb-md-5">
+                <span class="badge bg-secondary text-dark fw-bold px-3 py-2 rounded-pill">MUNICIPAL DIRECTORY</span>
+                <h2 class="fw-bold text-navy mt-2" data-i18n="dir_head">Department Directory</h2>
+                <p class="text-muted small fs-sm-6" data-i18n="dir_sub">Get in touch with our official offices at Municipal Hall, Poblacion 2, Calatagan, Batangas.</p>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-muni p-3 d-flex flex-row align-items-center gap-3">
+                        <div class="p-3 bg-navy text-warning rounded-circle flex-shrink-0">
+                            <i class="fa-solid fa-user-tie fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold m-0 text-navy">Office of the Mayor</h6>
+                            <small class="text-muted d-block">Mayor Rico B. Puno</small>
+                            <small class="text-primary fw-semibold"><i class="fa-solid fa-phone me-1"></i>(043) 331-1001</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-muni p-3 d-flex flex-row align-items-center gap-3">
+                        <div class="p-3 bg-navy text-warning rounded-circle flex-shrink-0">
+                            <i class="fa-solid fa-landmark fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold m-0 text-navy">Sangguniang Bayan</h6>
+                            <small class="text-muted d-block">Office of the Vice Mayor</small>
+                            <small class="text-primary fw-semibold"><i class="fa-solid fa-phone me-1"></i>(043) 331-1002</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-muni p-3 d-flex flex-row align-items-center gap-3">
+                        <div class="p-3 bg-navy text-warning rounded-circle flex-shrink-0">
+                            <i class="fa-solid fa-heart-pulse fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold m-0 text-navy">Municipal Health Office</h6>
+                            <small class="text-muted d-block">Rural Health Unit</small>
+                            <small class="text-primary fw-semibold"><i class="fa-solid fa-phone me-1"></i>(043) 331-1155</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-muni p-3 d-flex flex-row align-items-center gap-3">
+                        <div class="p-3 bg-navy text-warning rounded-circle flex-shrink-0">
+                            <i class="fa-solid fa-shield-cat fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold m-0 text-navy">MDRRMO Disaster Office</h6>
+                            <small class="text-muted d-block">24/7 Emergency Center</small>
+                            <small class="text-primary fw-semibold"><i class="fa-solid fa-phone me-1"></i>(043) 331-2345</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-muni p-3 d-flex flex-row align-items-center gap-3">
+                        <div class="p-3 bg-navy text-warning rounded-circle flex-shrink-0">
+                            <i class="fa-solid fa-umbrella-beach fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold m-0 text-navy">Municipal Tourism Office</h6>
+                            <small class="text-muted d-block">Resort & Beach Permits</small>
+                            <small class="text-primary fw-semibold"><i class="fa-solid fa-phone me-1"></i>(043) 331-8899</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-muni p-3 d-flex flex-row align-items-center gap-3">
+                        <div class="p-3 bg-navy text-warning rounded-circle flex-shrink-0">
+                            <i class="fa-solid fa-vault fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold m-0 text-navy">Municipal Treasury</h6>
+                            <small class="text-muted d-block">Tax Payments & Receipts</small>
+                            <small class="text-primary fw-semibold"><i class="fa-solid fa-phone me-1"></i>(043) 331-1008</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy text-white pt-5 pb-4" style="background-color: var(--muni-navy);">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="seal-logo" style="width: 44px; height: 44px;">
+                            <i class="fa-solid fa-anchor fs-5" style="color: var(--muni-navy);"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold m-0 text-warning">CALATAGAN, BATANGAS</h5>
+                            <small class="text-white-50">Republic of the Philippines</small>
+                        </div>
+                    </div>
+                    <p class="text-white-50 small" data-i18n="foot_desc">
+                        Official web portal of the Local Government Unit of Calatagan. Serving with integrity, rapid response, and dedicated to sustainable eco-tourism and marine protection.
+                    </p>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h6 class="fw-bold text-warning mb-3" data-i18n="foot_links">Quick Links</h6>
+                    <ul class="list-unstyled small text-white-50">
+                        <li class="mb-2"><a href="#home" class="text-white-50 text-decoration-none" data-i18n="nav_home">Home</a></li>
+                        <li class="mb-2"><a href="#eservices" class="text-white-50 text-decoration-none" data-i18n="nav_eservices">Online E-Services</a></li>
+                        <li class="mb-2"><a href="#tourism" class="text-white-50 text-decoration-none" data-i18n="nav_tourism">Discover Calatagan</a></li>
+                        <li class="mb-2"><a href="#directory" class="text-white-50 text-decoration-none" data-i18n="nav_directory">Departments</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <h6 class="fw-bold text-warning mb-3">Governance Transparency</h6>
+                    <ul class="list-unstyled small text-white-50">
+                        <li class="mb-2"><i class="fa-solid fa-angle-right me-1 text-warning"></i> Full Disclosure Portal</li>
+                        <li class="mb-2"><i class="fa-solid fa-angle-right me-1 text-warning"></i> Bids & Awards (BAC)</li>
+                        <li class="mb-2"><i class="fa-solid fa-angle-right me-1 text-warning"></i> Citizen's Charter 2026</li>
+                        <li class="mb-2"><i class="fa-solid fa-angle-right me-1 text-warning"></i> Municipal Ordinances</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold text-warning mb-3" data-i18n="foot_contact">Contact Us</h6>
+                    <p class="small text-white-50 mb-2"><i class="fa-solid fa-location-dot me-2 text-warning"></i> Municipal Hall, Poblacion 2, Calatagan, Batangas 4215</p>
+                    <p class="small text-white-50 mb-2"><i class="fa-solid fa-envelope me-2 text-warning"></i> info@calatagan.gov.ph</p>
+                    <div class="d-flex gap-2 mt-3">
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-secondary">
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-white-50 text-center text-md-start gap-2">
+                <span>© 2026 Municipality of Calatagan, Batangas. All Rights Reserved.</span>
+                <span>Designed for Modern LGU Transparency & Eco-Tourism</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Application Modal -->
+    <div class="modal fade" id="muniServiceModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header bg-navy text-white rounded-top-4" style="background-color: var(--muni-navy);">
+                    <h5 class="modal-title fw-bold fs-6 fs-md-5" id="modalServiceTitle"><i class="fa-solid fa-file-signature me-2 text-warning"></i>Online Service Application</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-3 p-md-4">
+                    <form id="serviceAppForm" onsubmit="handleFormSubmit(event)">
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold" data-i18n="modal_name">Full Name</label>
+                            <input type="text" class="form-control" required placeholder="e.g. Juan Dela Cruz">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold" data-i18n="modal_phone">Mobile Contact Number</label>
+                            <input type="tel" class="form-control" required placeholder="e.g. 09171234567">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold" data-i18n="modal_address">Barangay Address</label>
+                            <select class="form-select" required>
+                                <option value="">Select Barangay in Calatagan...</option>
+                                <option value="Bagong Silang">Bagong Silang</option>
+                                <option value="Baha">Baha</option>
+                                <option value="Balitoc">Balitoc</option>
+                                <option value="Poblacion 1">Poblacion 1</option>
+                                <option value="Poblacion 2">Poblacion 2</option>
+                                <option value="Quilitisan">Quilitisan</option>
+                                <option value="Sta. Ana">Sta. Ana</option>
+                                <option value="Tourist / Non-Resident">Tourist / Non-Resident Visitor</option>
+                            </select>
+                        </div>
+                        <div class="p-3 bg-light rounded-3 border d-flex justify-content-between align-items-center mb-3">
+                            <span class="small text-muted fw-semibold" data-i18n="modal_fee">Estimated Assessment Fee:</span>
+                            <span class="fw-bold text-success fs-5" id="modalFeeAmount">₱50.00</span>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal" data-i18n="btn_cancel">Cancel</button>
+                            <button type="submit" class="btn btn-muni-gold px-4" data-i18n="btn_submit">Submit & Pay Online</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Modal -->
+    <div class="modal fade" id="emergencyModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header bg-danger text-white rounded-top-4">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-triangle-exclamation me-2"></i>MDRRMO Emergency Center</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4 text-center">
+                    <i class="fa-solid fa-headset text-danger display-4 mb-3"></i>
+                    <h4 class="fw-bold text-navy">Calatagan Disaster Hotline</h4>
+                    <p class="text-muted small">For coastal storm surge warnings, marine rescue, medical emergencies, and typhoon bulletins.</p>
+
+                    <div class="d-grid gap-2 mb-2">
+                        <a href="tel:0433312345" class="btn btn-danger btn-lg rounded-pill fw-bold fs-6">
+                            <i class="fa-solid fa-phone me-2"></i> CALL MDRRMO: (043) 331-2345
+                        </a>
+                        <a href="tel:09171112233" class="btn btn-outline-dark btn-lg rounded-pill fw-bold fs-6">
+                            <i class="fa-solid fa-mobile-screen me-2"></i> MOBILE / PNP: 0917-111-2233
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Language Dictionary Data (Default: English 'en')
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_about: "Mayor's Corner",
+                nav_eservices: "Online E-Services",
+                nav_tourism: "Discover Calatagan",
+                nav_directory: "Departments",
+                hero_title: "Welcome to Calatagan",
+                hero_motto: '"Strong Governance, Prosperous Calatagan"',
+                btn_search: "Search",
+                cta_eservices: "Pay & Apply Online",
+                cta_tourism: "Explore Resorts & Landmarks",
+                mayor_title: "Municipal Mayor",
+                mayor_subtitle: "Message from the Municipal Mayor",
+                mayor_quote: '"A warm and joyful welcome to the official web portal of the Municipality of Calatagan! Our local government continuously strives to deliver fast, honest, and transparent public service for every Calataguenio and our valued guests."',
+                mayor_desc: "Through our modernized E-Services portal, we connect our 25 barangays and global tourists to seamless municipal applications, eco-tourism registration, real property taxation, and disaster preparedness updates.",
+                stat_land: "Land Area",
+                stat_brgy: "Barangays",
+                stat_coast: "Coastline",
+                stat_sector: "Main Economy",
+                eservices_head: "Online Government E-Services",
+                eservices_sub: "Apply, pay, and obtain official municipal documents convenience-first without waiting in physical queues.",
+                btn_start: "Start Application",
+                btn_verify: "Verify Property",
+                btn_request: "Request Record",
+                btn_pass: "Get Tourist Pass",
+                btn_clearance: "Apply Clearance",
+                btn_safety: "File Compliance",
+                tour_head: "Discover Calatagan",
+                tour_subtitle: "Heritage & Attractions",
+                filter_all: "All Places",
+                filter_heritage: "Heritage",
+                filter_beach: "Beaches & Reefs",
+                filter_eco: "Eco-Parks",
+                calc_title: "Calculate Group Entrance Pass",
+                calc_desc: "Under Municipal Ordinance No. 2021-102, all resort guests and tourists visiting Calatagan beaches are required to pay an Ecological & Environmental Conservation fee (₱50.00 / headcount).",
+                calc_adults: "Regular Adults (₱50)",
+                calc_seniors: "Seniors / PWDs (₱40)",
+                calc_dest: "Target Beach / Resort Area",
+                calc_total: "Total Eco Fee:",
+                btn_prepay: "Pre-pay Eco Pass",
+                dir_head: "Department Directory",
+                dir_sub: "Get in touch with our official offices at Municipal Hall, Poblacion 2, Calatagan, Batangas.",
+                foot_desc: "Official web portal of the Local Government Unit of Calatagan. Serving with integrity, rapid response, and dedicated to sustainable eco-tourism and marine protection.",
+                foot_links: "Quick Links",
+                foot_contact: "Contact Us",
+                modal_name: "Full Name",
+                modal_phone: "Mobile Contact Number",
+                modal_address: "Barangay Address",
+                modal_fee: "Estimated Assessment Fee:",
+                btn_cancel: "Cancel",
+                btn_submit: "Submit & Pay Online"
+            },
+            tl: {
+                nav_home: "Tahanan",
+                nav_about: "Mensahe ng Mayor",
+                nav_eservices: "E-Serbisyo",
+                nav_tourism: "Pasyalan sa Calatagan",
+                nav_directory: "Direktoryo",
+                hero_title: "Maligayang Pagdating sa Calatagan",
+                hero_motto: '"Matatag na Pamamahala, Masaganang Calatagan"',
+                btn_search: "Hanapin",
+                cta_eservices: "Kumuha ng Serbisyong Online",
+                cta_tourism: "Tuklasin ang mga Beach at Pasyalan",
+                mayor_title: "Punong Bayan",
+                mayor_subtitle: "Mensahe mula sa Punong Bayan",
+                mayor_quote: '"Isang mainit at masayang pagtanggap sa opisyal na web portal ng Bayan ng Calatagan! Ang ating pamahalaang lokal ay patuloy na nagsusumikap na ihatid ang mabilis, tapat, at transparent na serbisyo publiko para sa bawat Calataguenio at sa ating mga bisita."',
+                mayor_desc: "Sa pamamagitan ng ating modernong E-Services portal, ikinokonekta natin ang ating 25 barangay at mga turista sa mabilis na online permit, eco-tourism pass, buwis sa lupa, at disaster preparedness.",
+                stat_land: "Sukat ng Lupa",
+                stat_brgy: "Mga Barangay",
+                stat_coast: "Kabaybayin",
+                stat_sector: "Pangunahing Sektor",
+                eservices_head: "Mga Serbisyong Pampamahalaan Online",
+                eservices_sub: "Mag-apply, magbayad, at kumuha ng opisyal na dokumento nang hindi na kailangang pumila sa Munisipyo.",
+                btn_start: "Simulan ang Application",
+                btn_verify: "Suriin ang Ari-arian",
+                btn_request: "Humingi ng Dokumento",
+                btn_pass: "Kumuha ng Tourist Pass",
+                btn_clearance: "Kumuha ng Clearance",
+                btn_safety: "Mag-file ng Inspeksyon",
+                tour_head: "Tuklasin ang Calatagan",
+                tour_subtitle: "Pasyalan at Pamana",
+                filter_all: "Lahat ng Lugar",
+                filter_heritage: "Kultura & Pamana",
+                filter_beach: "Aplaya & Baybayin",
+                filter_eco: "Likas-Kaya",
+                calc_title: "Kwentahin ang Bayad sa Eco Pass",
+                calc_desc: "Ayon sa Municipal Ordinance No. 2021-102, ang lahat ng bumibisita sa mga resort at baybayin ng Calatagan ay may Ecological Conservation fee (₱50.00 bawat tao).",
+                calc_adults: "Nakatanda (₱50)",
+                calc_seniors: "Senior / PWD (₱40)",
+                calc_dest: "Pupuntahang Beach / Resort",
+                calc_total: "Kabuuan (Total Eco Fee):",
+                btn_prepay: "Magbayad ng Eco Pass",
+                dir_head: "Direktoryo ng mga Tanggapan",
+                dir_sub: "Makipag-ugnayan sa aming mga departamento sa Holo ng Munisipyo, Poblacion 2, Calatagan.",
+                foot_desc: "Ang opisyal na pamahalaang web portal ng Bayan ng Calatagan. Nagsisilbi nang may katapatan, kabilisang umaaksyon, at nagsusulong ng likas-kayang turismo at pangingisda.",
+                foot_links: "Mabilis na Links",
+                foot_contact: "Sulat at Ugnayan",
+                modal_name: "Buong Pangalan",
+                modal_phone: "Cellphone Number",
+                modal_address: "Barangay Address",
+                modal_fee: "Tinatayang Bayarin:",
+                btn_cancel: "Kanselahin",
+                btn_submit: "I-submit at Magbayad"
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Real-Time PST Clock
+        function updateClock() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour12: true });
+            document.getElementById('clock-ph').innerText = timeStr;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Language Switcher Engine
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'tl' : 'en';
+            document.getElementById('lang-btn').innerText = currentLang === 'en' ? 'EN / Tagalog' : 'Tagalog / EN';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    el.innerText = translations[currentLang][key];
+                }
+            });
+        }
+
+        // Live Search Engine for Services
+        function liveSearchServices() {
+            const query = document.getElementById('muniSearchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.service-card-item');
+
+            cards.forEach(card => {
+                const searchKeywords = card.getAttribute('data-title').toLowerCase();
+                if (searchKeywords.includes(query)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        function triggerSearch() {
+            const query = document.getElementById('muniSearchInput').value;
+            if (query) {
+                document.getElementById('eservices').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Eco Fee Calculator Logic
+        function computeEcoFee() {
+            const adults = parseInt(document.getElementById('calcAdults').value) || 0;
+            const seniors = parseInt(document.getElementById('calcSeniors').value) || 0;
+
+            const total = (adults * 50) + (seniors * 40);
+            document.getElementById('totalFeeDisplay').innerText = `₱${total}.00`;
+        }
+
+        // Filter Tourism Category Grid
+        function filterTourism(category, event) {
+            document.querySelectorAll('#tourism .btn-group .btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.tourist-item');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Open Dynamic Service Modal
+        function openServiceModal(serviceName, fee) {
+            document.getElementById('modalServiceTitle').innerText = serviceName;
+            document.getElementById('modalFeeAmount').innerText = `₱${fee}.00`;
+            const modal = new bootstrap.Modal(document.getElementById('muniServiceModal'));
+            modal.show();
+        }
+
+        function openEmergencyModal() {
+            const modal = new bootstrap.Modal(document.getElementById('emergencyModal'));
+            modal.show();
+        }
+
+        // Form Submit Feedback
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const modalEl = document.getElementById('muniServiceModal');
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            modal.hide();
+
+            const msg = currentLang === 'en' 
+                ? "[MUNICIPAL E-PORTAL SUCCESS]\n\nYour application has been submitted successfully! A reference SMS and Official QR Code receipt have been sent to your mobile phone."
+                : "[MUNICIPAL E-PORTAL SUCCESS]\n\nInyong na-submit ang inyong aplikasyon! Isang Reference SMS at Official QR Code Receipt ang ipinadala sa inyong cellphone number.";
+
+            alert(msg);
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
